@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "arpifs4py"
+version = "0.1.0"
+description = "Interface from NWP model to python"
+authors = ["None"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

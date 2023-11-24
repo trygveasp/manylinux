@@ -1,0 +1,20 @@
+# How to get a binary wheel for arpifs4py used in EPyGrAM
+
+Need in $HOME/data:
+EPyGrAM-1.4.13  # Full source
+Harmonie        # Full source (cy46h1)
+
+# Checkout of this repo. Copy EPyGrAM-1.4.13/site/arpifs4py to arpifs4py/.
+
+# Build container and binary wheel
+podman build -v /home/trygveasp/data:/data -f Dockerfile_2_28 -t manylinux:2_28
+
+# arpifs4py binary wheel can be found in $HOME/data/wheelhouse
+
+# Copy EPyGrAM-1.4.13 to your locations. Remove site/arpifs4py. Set up python environment and paths.
+# Install the binary wheel with e.g pip
+# When arpifs4py is a local installation you have to modify EPyGrAM-1.4.13/site/ctypesForFortran.py : 
+
+#_re = re.compile('((?P<libname>lib.*) => )?(?P<libpath>/.*/.*\.so(\.\d+)?)\s\\(0x.*\)')
+_re = re.compile('((?P<libname>lib.*) => )?(?P<libpath>.*\.so.*)\s\\(0x.*\)')
+
