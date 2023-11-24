@@ -9,6 +9,9 @@ Harmonie        # Full source (cy46h1)
 # Build container and binary wheel
 podman build -v /home/trygveasp/data:/data -f Dockerfile_2_28 -t manylinux:2_28
 
+# To inspect container:
+podman run -v /home/trygveasp/data:/data -it manylinux:2_28 /bin/bash
+
 # arpifs4py binary wheel can be found in $HOME/data/wheelhouse
 
 # Copy EPyGrAM-1.4.13 to your locations. Remove site/arpifs4py. Set up python environment and paths.
@@ -17,4 +20,12 @@ podman build -v /home/trygveasp/data:/data -f Dockerfile_2_28 -t manylinux:2_28
 
 #_re = re.compile('((?P<libname>lib.*) => )?(?P<libpath>/.*/.*\.so(\.\d+)?)\s\\(0x.*\)')
 _re = re.compile('((?P<libname>lib.*) => )?(?P<libpath>.*\.so.*)\s\\(0x.*\)')
+
+
+
+# Ubuntu container:
+podman build -v /home/trygveasp/data:/data -f Dockerfile_ubuntu_22_04 -t harmonie_in_ubuntu:test
+# To plot from container:
+podman run --net=host --ipc=host -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix --env=QT_X11_NO_MITSHM=1 -v /home/trygveasp/data:/data -it harmonie_in_ubuntu:test epy_cartoplot.py -f CLSTEMPERATURE ICMSHHARM+0003'
+
 
