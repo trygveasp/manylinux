@@ -1,0 +1,24 @@
+#!/bin/bash
+
+arpifs4py=$1
+
+mkdir -p shared
+cd shared
+rm -f *.o
+
+libs="gribex bufr ifsaux ifsaux-py-interface etrans-module etrans trans-module trans biper-module biper algor-boot algor"
+for L in $libs ;  do
+
+ D=${INSTALL_DIR}/lib/lib$L.a
+ ar -x $D
+
+done
+
+cp ../dummies.o . || exit 1
+rm -f sencode.c.o
+
+export PATH=/usr/bin/:$PATH
+mpifort --version
+mpifort -shared -fopenmp /usr/lib/gcc/x86_64-redhat-linux/4.8.2/libgfortran.a -o ../libs4py.so *.o || exit 1
+cp ../libs4py.so $arpifs4py
+

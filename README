@@ -7,12 +7,13 @@ Harmonie        # Full source (cy46h1)
 # Checkout of this repo. Copy EPyGrAM-1.4.13/site/arpifs4py to arpifs4py/.
 
 # Build container and binary wheel
-podman build -v /home/trygveasp/data:/data -f Dockerfile_2_28 -t manylinux:2_28
+podman build -v /home/trygveasp/data:/data -f Dockerfile_manylinux_2014 -t manylinux:2014
 
 # To inspect container:
-podman run -v /home/trygveasp/data:/data -it manylinux:2_28 /bin/bash
+podman run -v /home/trygveasp/data:/data -it manylinux:2014 /bin/bash
 
 # arpifs4py binary wheel can be found in $HOME/data/wheelhouse
+# E.g arpifs4py-0.1.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
 
 # Copy EPyGrAM-1.4.13 to your locations. Remove site/arpifs4py. Set up python environment and paths.
 # Install the binary wheel with e.g pip
